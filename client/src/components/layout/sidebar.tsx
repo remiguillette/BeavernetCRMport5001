@@ -116,10 +116,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       <div className="p-4 border-t border-border">
         <div className="flex items-center">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src="/images/beaver.png" alt="Rémi Guillette" />
-            <AvatarFallback className="bg-primary/20 text-primary font-bold">RG</AvatarFallback>
-          </Avatar>
+          <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+            RG
+          </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-foreground">Rémi Guillette</p>
             <p className="text-xs text-muted-foreground">CEO</p>
