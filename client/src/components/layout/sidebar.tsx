@@ -31,7 +31,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     } else {
       document.body.style.overflow = "auto";
     }
-    
+
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -65,7 +65,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <Menu className="h-6 w-6" />
         </button>
       </div>
-      
+
       <div className="p-4 border-b border-border">
         <div className="relative">
           <Input
@@ -76,7 +76,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
         </div>
       </div>
-      
+
       <ScrollArea className="flex-1 overflow-y-auto py-4 px-3">
         <nav>
           <ul className="space-y-1">
@@ -98,7 +98,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </Link>
               </li>
             ))}
-            
+
             <li className="pt-4 mt-4 border-t border-border">
               <a
                 href="http://localhost:5000/"
@@ -113,7 +113,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </ul>
         </nav>
       </ScrollArea>
-      
+
       <div className="p-4 border-t border-border">
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
