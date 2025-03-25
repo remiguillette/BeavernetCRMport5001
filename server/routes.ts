@@ -37,7 +37,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const validateBody = (schema: z.ZodType<any, any>) => {
     return (req: any, res: any, next: any) => {
       try {
-        req.validatedBody = schema.parse(req.body);
+        const validated = schema.parse(req.body);
+        req.validatedBody = validated;
         next();
       } catch (error) {
         if (error instanceof ZodError) {
@@ -198,6 +199,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(documents);
     } catch (error) {
       res.status(500).json({ message: "Erreur lors de la récupération des documents" });
+    }
+  });
+  
+  // Route pour ajouter un nouveau document
+  app.post("/api/documents", async (req, res) => {
+    try {
+      const { type, client_id, document_url, description, status } = req.body;
+      
+      if (!type || !client_id || !document_url) {
+        return res.status(400).json({ message: "Type de document, client et URL du document sont requis" });
+      }
+      
+      const clientId = parseInt(client_id.toString());
+      if (isNaN(clientId)) {
+        return res.status(400).json({ message: "ID de client invalide" });
+      }
+      
+      const documentData = {
+        client_id: clientId,
+        type,
+        nom: `Document ${type} - Client ${clientId}`,
+        chemin: document_url,
+        statut: status || 'a_verifier',
+        description: description || '',
+        date: new Date().toISOString(),
+      };
+      
+      const newDocument = await storage.addDocumentToClient(clientId, documentData);
+      res.status(201).json(newDocument);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du document:", error);
+      res.status(500).json({ message: "Erreur lors de l'ajout du document" });
     }
   });
 

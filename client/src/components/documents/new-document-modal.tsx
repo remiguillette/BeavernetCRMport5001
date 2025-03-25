@@ -40,7 +40,7 @@ export function NewDocumentModal({ isOpen, onClose }: NewDocumentModalProps) {
   // Mutation pour ajouter un document
   const addDocumentMutation = useMutation({
     mutationFn: async (documentData: any) => {
-      return apiRequest<any>({
+      return apiRequest({
         url: "/api/documents",
         method: "POST",
         data: documentData,
@@ -56,10 +56,11 @@ export function NewDocumentModal({ isOpen, onClose }: NewDocumentModalProps) {
       resetForm();
       onClose();
     },
-    onError: () => {
+    onError: (error: any) => {
+      console.error("Erreur lors de l'ajout de document:", error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de l'ajout du document",
+        description: error?.message || "Une erreur est survenue lors de l'ajout du document",
         variant: "destructive",
       });
     },
