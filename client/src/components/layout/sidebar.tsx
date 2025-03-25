@@ -6,15 +6,15 @@ import {
   FileText,
   Calendar,
   BarChart2,
-  Settings,
-  LogOut,
   Search,
   Menu,
+  ArrowUpRight,
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { useMobile } from "@/hooks/use-mobile";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -43,7 +43,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     { path: "/documents", label: "Documents", icon: FileText },
     { path: "/calendrier", label: "Calendrier", icon: Calendar },
     { path: "/rapports", label: "Rapports", icon: BarChart2 },
-    { path: "/parametres", label: "Paramètres", icon: Settings },
   ];
 
   if (isMobile && !isOpen) return null;
@@ -102,11 +101,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             
             <li className="pt-4 mt-4 border-t border-border">
               <a
-                href="#"
+                href="http://localhost:5000/"
                 className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg hover:bg-accent text-foreground hover:text-primary transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <LogOut className="h-5 w-5 mr-3" />
-                Déconnexion
+                <ArrowUpRight className="h-5 w-5 mr-3" />
+                Retour Intranet
               </a>
             </li>
           </ul>
@@ -115,10 +116,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       <div className="p-4 border-t border-border">
         <div className="flex items-center">
-          <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">JD</div>
+          <Avatar className="h-10 w-10">
+            <AvatarImage src="/images/beaver.png" alt="Rémi Guillette" />
+            <AvatarFallback className="bg-primary/20 text-primary font-bold">RG</AvatarFallback>
+          </Avatar>
           <div className="ml-3">
-            <p className="text-sm font-medium text-foreground">Jean Dupont</p>
-            <p className="text-xs text-muted-foreground">Administrateur</p>
+            <p className="text-sm font-medium text-foreground">Rémi Guillette</p>
+            <p className="text-xs text-muted-foreground">CEO</p>
           </div>
         </div>
       </div>
