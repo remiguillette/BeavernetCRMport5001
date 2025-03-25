@@ -6,6 +6,9 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import Clients from "@/pages/clients";
 import Documents from "@/pages/documents";
+import Calendrier from "@/pages/calendrier";
+import Parametres from "@/pages/parametres";
+import Rapports from "@/pages/rapports";
 
 function Router() {
   return (
@@ -13,6 +16,9 @@ function Router() {
       <Route path="/" component={Dashboard} />
       <Route path="/clients" component={Clients} />
       <Route path="/documents" component={Documents} />
+      <Route path="/calendrier" component={Calendrier} />
+      <Route path="/parametres" component={Parametres} />
+      <Route path="/rapports" component={Rapports} />
       <Route component={NotFound} />
     </Switch>
   );

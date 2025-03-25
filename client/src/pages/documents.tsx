@@ -9,11 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileUpload } from "@/components/ui/file-upload";
 import { Search, Eye, Download, AlertCircle, CheckCircle, UploadCloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { NewDocumentModal } from "@/components/documents/new-document-modal";
 
 export default function Documents() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("tous");
+  const [isNewDocumentModalOpen, setIsNewDocumentModalOpen] = useState(false);
   const { toast } = useToast();
 
   const { data: documents, isLoading } = useQuery({
