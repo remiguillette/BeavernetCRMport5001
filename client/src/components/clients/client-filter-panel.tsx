@@ -33,7 +33,7 @@ export function ClientFilterPanel({ onFilterChange, onExport }: ClientFilterPane
               <SelectValue placeholder="Tous les types" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous les types</SelectItem>
+              <SelectItem value="tous">Tous les types</SelectItem>
               <SelectItem value="particulier">Particulier</SelectItem>
               <SelectItem value="entreprise">Entreprise</SelectItem>
             </SelectContent>
@@ -44,7 +44,7 @@ export function ClientFilterPanel({ onFilterChange, onExport }: ClientFilterPane
               <SelectValue placeholder="Toutes les régions" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes les régions</SelectItem>
+              <SelectItem value="toutes">Toutes les régions</SelectItem>
               <SelectItem value="nord">Nord</SelectItem>
               <SelectItem value="sud">Sud</SelectItem>
               <SelectItem value="est">Est</SelectItem>
@@ -57,7 +57,7 @@ export function ClientFilterPanel({ onFilterChange, onExport }: ClientFilterPane
               <SelectValue placeholder="Trier par" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Trier par</SelectItem>
+              <SelectItem value="aucun">Trier par</SelectItem>
               <SelectItem value="nom_asc">Nom (A-Z)</SelectItem>
               <SelectItem value="nom_desc">Nom (Z-A)</SelectItem>
               <SelectItem value="date_asc">Date (ancien-récent)</SelectItem>

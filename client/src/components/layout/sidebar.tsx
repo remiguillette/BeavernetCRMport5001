@@ -83,10 +83,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <ul className="space-y-1">
             {menuItems.map((item) => (
               <li key={item.path}>
-                <Link href={item.path} onClick={isMobile ? onClose : undefined}>
-                  <a
+                <Link href={item.path}>
+                  <div
+                    onClick={isMobile ? onClose : undefined}
                     className={cn(
-                      "flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                      "flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors cursor-pointer",
                       location === item.path
                         ? "bg-accent text-primary"
                         : "hover:bg-accent text-foreground hover:text-primary"
@@ -94,7 +95,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   >
                     <item.icon className="h-5 w-5 mr-3" />
                     {item.label}
-                  </a>
+                  </div>
                 </Link>
               </li>
             ))}
