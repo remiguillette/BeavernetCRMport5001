@@ -32,12 +32,12 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
 
   const handleAddNote = async () => {
     if (!newNote.trim()) return;
-    
+
     try {
       const response = await apiRequest("POST", `/api/clients/${client.id}/notes`, {
         contenu: newNote,
       });
-      
+
       queryClient.invalidateQueries({ queryKey: [`/api/clients/${client.id}`] });
       setNewNote("");
       toast({
@@ -70,20 +70,17 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
             <X className="h-6 w-6" />
           </Button>
         </DialogHeader>
-        
+
         <div className="overflow-y-auto max-h-[calc(90vh-8rem)]">
           <div className="p-6">
             <div className="flex flex-col md:flex-row md:items-start gap-6">
               {/* Left Column */}
               <div className="w-full md:w-1/3">
-                <div className="bg-accent p-4 rounded-lg">
+                <div className="p-4 rounded-lg"> {/* Removed bg-accent */}
                   <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-primary text-2xl font-bold mb-3">
-                      {client.nom_complet.split(' ').map(name => name[0]).join('').toUpperCase()}
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground">{client.nom_complet}</h4>
+                    <h4 className="text-lg font-semibold text-foreground">{client.nom_complet}</h4> {/* Removed avatar div */}
                     <p className="text-sm text-muted-foreground">ID: CLI-{client.id}</p>
-                    
+
                     <div className="mt-4 w-full">
                       <div className="flex items-center justify-between py-2 border-b border-border">
                         <span className="text-sm text-muted-foreground">Type de client</span>
@@ -105,7 +102,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6 flex flex-col space-y-2">
                     <Button className="w-full flex items-center justify-center gap-2">
                       <Edit className="h-5 w-5" />
@@ -118,7 +115,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                   </div>
                 </div>
               </div>
-              
+
               {/* Right Column */}
               <div className="w-full md:w-2/3">
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -128,67 +125,67 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                     <TabsTrigger value="historique">Historique</TabsTrigger>
                     <TabsTrigger value="notes">Notes</TabsTrigger>
                   </TabsList>
-                  
+
                   <TabsContent value="informations" className="mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Personal Info */}
-                      <div className="bg-accent p-4 rounded-lg">
+                      <div className="p-4 rounded-lg"> {/*Removed bg-accent*/}
                         <h5 className="font-medium text-foreground mb-4 flex items-center">
                           <User className="h-5 w-5 mr-2 text-primary" />
                           Informations Personnelles
                         </h5>
-                        
+
                         <div className="space-y-3">
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Nom complet</p>
                             <p className="text-sm text-foreground">{client.nom_complet}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Date de naissance</p>
                             <p className="text-sm text-foreground">{client.date_naissance}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Adresse</p>
                             <p className="text-sm text-foreground">{client.adresse}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Téléphone</p>
                             <p className="text-sm text-foreground">{client.telephone}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Email</p>
                             <p className="text-sm text-foreground">{client.email}</p>
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* License Info */}
-                      <div className="bg-accent p-4 rounded-lg">
+                      <div className="p-4 rounded-lg"> {/*Removed bg-accent*/}
                         <h5 className="font-medium text-foreground mb-4 flex items-center">
                           <FileText className="h-5 w-5 mr-2 text-primary" />
                           Permis de Conduire
                         </h5>
-                        
+
                         <div className="space-y-3">
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Numéro de permis</p>
                             <p className="text-sm text-foreground">{client.permis?.numero || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Date d'émission</p>
                             <p className="text-sm text-foreground">{client.permis?.date_emission || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Date d'expiration</p>
                             <p className="text-sm text-foreground">{client.permis?.date_expiration || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Catégories</p>
                             <div className="flex flex-wrap gap-2 mt-1">
@@ -199,7 +196,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                               ))}
                             </div>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Scan du permis</p>
                             {client.permis?.document_url ? (
@@ -220,35 +217,35 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Vehicle Info */}
-                      <div className="bg-accent p-4 rounded-lg">
+                      <div className="p-4 rounded-lg"> {/*Removed bg-accent*/}
                         <h5 className="font-medium text-foreground mb-4 flex items-center">
                           <Car className="h-5 w-5 mr-2 text-primary" />
                           Véhicule
                         </h5>
-                        
+
                         <div className="space-y-3">
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Immatriculation</p>
                             <p className="text-sm text-foreground">{client.vehicule?.immatriculation || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Marque</p>
                             <p className="text-sm text-foreground">{client.vehicule?.marque || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Modèle</p>
                             <p className="text-sm text-foreground">{client.vehicule?.modele || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Année</p>
                             <p className="text-sm text-foreground">{client.vehicule?.annee || 'N/A'}</p>
                           </div>
-                          
+
                           <div>
                             <p className="text-xs text-muted-foreground mb-1">Certificat d'immatriculation</p>
                             {client.vehicule?.document_url ? (
@@ -269,14 +266,14 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Contact History */}
-                      <div className="bg-accent p-4 rounded-lg">
+                      <div className="p-4 rounded-lg"> {/*Removed bg-accent*/}
                         <h5 className="font-medium text-foreground mb-4 flex items-center">
                           <MessageSquare className="h-5 w-5 mr-2 text-primary" />
                           Contacts Récents
                         </h5>
-                        
+
                         <div className="space-y-4">
                           {client.interactions && client.interactions.length > 0 ? (
                             client.interactions.map((interaction, index) => (
@@ -301,11 +298,11 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                       </div>
                     </div>
                   </TabsContent>
-                  
+
                   <TabsContent value="documents" className="mt-4">
-                    <div className="bg-accent p-6 rounded-lg">
+                    <div className="p-6 rounded-lg"> {/*Removed bg-accent*/}
                       <h5 className="font-medium text-foreground mb-4">Documents du client</h5>
-                      
+
                       <div className="space-y-6">
                         <div>
                           <h6 className="text-sm font-medium text-foreground mb-3">Pièce d'identité</h6>
@@ -325,7 +322,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                             />
                           )}
                         </div>
-                        
+
                         <div>
                           <h6 className="text-sm font-medium text-foreground mb-3">Permis de conduire</h6>
                           {client.permis?.document_url ? (
@@ -344,7 +341,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                             />
                           )}
                         </div>
-                        
+
                         <div>
                           <h6 className="text-sm font-medium text-foreground mb-3">Carte grise</h6>
                           {client.vehicule?.document_url ? (
@@ -363,7 +360,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                             />
                           )}
                         </div>
-                        
+
                         <div>
                           <h6 className="text-sm font-medium text-foreground mb-3">Justificatif de domicile</h6>
                           {client.documents?.domicile ? (
@@ -385,11 +382,11 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                       </div>
                     </div>
                   </TabsContent>
-                  
+
                   <TabsContent value="historique" className="mt-4">
-                    <div className="bg-accent p-6 rounded-lg">
+                    <div className="p-6 rounded-lg"> {/*Removed bg-accent*/}
                       <h5 className="font-medium text-foreground mb-4">Historique d'interactions</h5>
-                      
+
                       <div className="space-y-4">
                         {client.interactions && client.interactions.length > 0 ? (
                           client.interactions.map((interaction, index) => (
@@ -421,7 +418,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                           <p className="text-sm text-muted-foreground">Aucune interaction enregistrée</p>
                         )}
                       </div>
-                      
+
                       <div className="mt-6 pt-4 border-t border-border">
                         <h6 className="text-sm font-medium text-foreground mb-3">Ajouter une nouvelle interaction</h6>
                         <div className="flex flex-col md:flex-row gap-3">
@@ -437,11 +434,11 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                       </div>
                     </div>
                   </TabsContent>
-                  
+
                   <TabsContent value="notes" className="mt-4">
-                    <div className="bg-accent p-6 rounded-lg">
+                    <div className="p-6 rounded-lg"> {/*Removed bg-accent*/}
                       <h5 className="font-medium text-foreground mb-4">Notes</h5>
-                      
+
                       <div className="space-y-4">
                         {client.notes && client.notes.length > 0 ? (
                           client.notes.map((note, index) => (
@@ -459,7 +456,7 @@ export function ClientDetailModal({ client, isOpen, onClose }: ClientDetailModal
                           <p className="text-sm text-muted-foreground">Aucune note enregistrée</p>
                         )}
                       </div>
-                      
+
                       <div className="mt-4">
                         <Textarea 
                           className="w-full bg-surface border border-border rounded-lg py-2 px-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" 
