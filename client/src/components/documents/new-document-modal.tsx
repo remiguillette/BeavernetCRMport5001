@@ -40,10 +40,11 @@ export function NewDocumentModal({ isOpen, onClose }: NewDocumentModalProps) {
   // Mutation pour ajouter un document
   const addDocumentMutation = useMutation({
     mutationFn: async (documentData: any) => {
-      return apiRequest({
+      return apiRequest<any>({
         url: "/api/documents",
         method: "POST",
         data: documentData,
+        on401: "throw",
       });
     },
     onSuccess: () => {

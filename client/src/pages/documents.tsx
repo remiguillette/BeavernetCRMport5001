@@ -133,7 +133,7 @@ export default function Documents() {
                 <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
               </form>
               
-              <Button>
+              <Button onClick={() => setIsNewDocumentModalOpen(true)}>
                 <UploadCloud className="h-5 w-5 mr-1.5" />
                 Nouveau Document
               </Button>
@@ -257,6 +257,11 @@ export default function Documents() {
           </Card>
         </div>
       </main>
+
+      <NewDocumentModal 
+        isOpen={isNewDocumentModalOpen} 
+        onClose={() => setIsNewDocumentModalOpen(false)} 
+      />
     </div>
   );
 }
