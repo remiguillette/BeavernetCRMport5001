@@ -114,7 +114,16 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
       </ScrollArea>
 
-      
+      <div className="p-4 border-t border-border">
+        <div className="flex items-center">
+          <img src="/attached_assets/beaver.png" alt="Beaver" className="h-10 w-10 rounded-full object-cover" />
+          <div className="ml-3">
+            <p className="text-sm font-medium text-foreground">Rémi Guillette</p>
+            <p className="text-xs text-muted-foreground">CEO</p>
+          </div>
+        </div>
+      </div>
+
     </aside>
   );
 }
