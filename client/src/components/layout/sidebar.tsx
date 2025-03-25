@@ -116,8 +116,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       <div className="p-4 border-t border-border">
         <div className="flex items-center">
-          <div className="h-10 w-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold overflow-hidden">
-            <img src="/beaver.png" alt="Rémi Guillette" className="w-full h-full object-cover" />
+          <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+            RG
           </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-foreground">Rémi Guillette</p>
