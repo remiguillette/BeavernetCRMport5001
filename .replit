@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "bash", "web"]
+modules = ["nodejs-20", "web"]
 run = "npm run dev"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
@@ -7,8 +7,7 @@ channel = "stable-24_05"
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["npm", "run", "start"]
-build = ["npm", "run", "build"]
+run = ["sh", "-c", "npm run dev"]
 
 [workflows]
 runButton = "Project"
@@ -35,7 +34,7 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
-waitForPort = 5000
+waitForPort = 5004
 
 [[workflows.workflow]]
 name = "Start on 5001"
@@ -47,5 +46,9 @@ task = "shell.exec"
 args = "ts-node server/port/index.ts"
 
 [[ports]]
-localPort = 5000
-externalPort = 80
+localPort = 5004
+externalPort = 3003
+
+[[ports]]
+localPort = 5004
+externalPort = 3003
