@@ -47,8 +47,8 @@ args = "ts-node server/port/index.ts"
 
 [[ports]]
 localPort = 5004
-externalPort = 3003
+externalPort = 3004
 
 [[ports]]
 localPort = 5004
-externalPort = 3003
+externalPort = 3004
